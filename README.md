@@ -1,27 +1,30 @@
-Proyecto Frontend: El Jardín de los Sabores
-Descripción
-Este proyecto corresponde al desarrollo frontend de un sitio web para un restaurante llamado El Jardín de los Sabores. Fue diseñado para proporcionar una experiencia de usuario atractiva y funcional que permita a los clientes explorar el menú, realizar pedidos y obtener información relevante del restaurante.
+# Proyecto Frontend: El Jardín de los Sabores
 
-Instalación
-Clonar el repositorio
+## Descripción
+Este proyecto fue desarrollado como parte de un sistema web para **El Jardín de los Sabores**, diseñado para ofrecer una experiencia interactiva y atractiva a los usuarios. Incluye funcionalidades para explorar el menú, gestionar pedidos y visualizar el estado de los mismos.
+
+---
+
+## Instalación
+
+### Clonar el repositorio
 Clona el proyecto con el siguiente comando:
-
-bash
-Copiar código
+```bash
 git clone https://github.com/tuusuario/jardin-de-los-sabores.git
+
+
 Requisitos del Sistema
 HTML5 y CSS3: Para la estructura y diseño.
-Bootstrap: Versión 5.3.0, para estilos y componentes responsivos.
-JavaScript: Para funcionalidades interactivas.
+Bootstrap: Versión 5.3.0 para estilos y componentes responsivos.
+JavaScript: Para interactividad y funcionalidades dinámicas.
 Font Awesome: Para íconos personalizados.
 Instalación de Dependencias
-Este proyecto no requiere instalación de dependencias externas aparte de las que se incluyen mediante enlaces CDN:
-
-Bootstrap: Incluido en el archivo HTML.
-Font Awesome: Incluido en el archivo HTML.
+No se requieren dependencias adicionales, ya que el proyecto utiliza enlaces CDN para:
+Bootstrap
+Font Awesome
 Inicialización del Proyecto
 Abre el archivo index.html en tu navegador.
-Asegúrate de que los archivos CSS e imágenes se encuentran en las rutas especificadas para un correcto funcionamiento.
+Asegúrate de que todas las imágenes y estilos están disponibles en las rutas correspondientes para un correcto funcionamiento.
 Estructura del Proyecto
 plaintext
 Copiar código
@@ -33,42 +36,40 @@ jardin-de-los-sabores/
 ├── js/                # Carpeta con archivos JavaScript personalizados (si aplica).
 └── README.md          # Este archivo README.
 Características del Proyecto
-Diseño y Estilo
-Interfaz responsiva diseñada con Bootstrap 5.3.0.
-Uso de imágenes optimizadas para una carga rápida.
-Tipografías y colores seleccionados para una experiencia visual agradable.
-Funcionalidades Principales
-Explorar Menú
-
-Sección de bienvenida con un botón que redirige a la sección de platos más populares mediante un desplazamiento suave.
-Carrito de Compras
-
-Funcionalidad para agregar platos y bebidas al carrito.
-Modal que muestra el resumen del pedido con opciones para realizar el pago.
-Estado del Pedido
-
-Modal donde el cliente puede visualizar los detalles de su pedido, el estado y el tiempo estimado de preparación.
-Métodos de Pago
-
-Opciones de pago en efectivo o tarjeta.
-Modal para ingresar los detalles de la tarjeta de manera sencilla.
-Slider de Imágenes
-
-Carrusel que destaca platos populares y al equipo del restaurante.
-Configuración Adicional
-Las imágenes utilizadas se encuentran en la carpeta img/.
-La estructura del menú está organizada en secciones claras: entradas, platos principales, postres e insumos.
+Diseño responsivo: Utiliza Bootstrap 5.3.0 para adaptarse a diferentes dispositivos.
+Interfaz amigable: Diseño moderno y limpio para facilitar la navegación del usuario.
 Librerías Utilizadas
-Bootstrap 5.3.0: Para el diseño responsivo.
-Font Awesome: Para los íconos.
-JavaScript nativo: Para interactividad, como el desplazamiento suave y funcionalidad del carrito.
+Bootstrap (via CDN): Para diseño responsivo y componentes UI.
+Font Awesome (via CDN): Para íconos en botones y enlaces.
+JavaScript nativo: Para interacciones como desplazamiento suave y gestión del carrito de compras.
+Funcionalidades Principales
+1. Explorar Menú
+Un botón en la sección de bienvenida permite a los usuarios desplazarse suavemente hacia la sección de platos más populares.
+
+2. Carrito de Compras
+Permite a los usuarios agregar productos al carrito.
+Muestra un resumen del pedido y el costo total en un modal.
+3. Estado del Pedido
+Un modal muestra el estado actual del pedido, incluyendo el tiempo estimado y los productos solicitados.
+4. Métodos de Pago
+Soporte para pagos en efectivo o con tarjeta.
+Modal interactivo para ingresar los datos de la tarjeta.
+5. Slider de Imágenes
+Un carrusel destaca platos populares y presenta al equipo del restaurante.
+
+Configuración Adicional
+Archivos Estáticos:
+
+Coloca las imágenes dentro de la carpeta img/.
+Personaliza los estilos en el archivo main.css.
+Integración futura:
+
+Conectar con un backend para gestionar pedidos en tiempo real.
 Mejoras Futuras
-Integración Backend:
-Conectar el sistema con una base de datos para guardar pedidos en tiempo real.
 Optimización de Imágenes:
-Uso de formatos modernos como WebP para una mejor carga.
+Uso de formatos modernos como WebP para tiempos de carga más rápidos.
 Internacionalización:
-Soporte para múltiples idiomas.
-PWA:
-Convertir el sitio en una aplicación web progresiva para mayor funcionalidad offline.
-Este proyecto fue diseñado para brindar una experiencia atractiva, eficiente y funcional, destacando la calidad del restaurante El Jardín de los Sabores.
+Agregar soporte para múltiples idiomas.
+Aplicación Web Progresiva (PWA):
+Convertir el proyecto en una PWA para funcionalidades offline.
+Este proyecto fue desarrollado para destacar la identidad y los servicios del restaurante El Jardín de los Sabores, garantizando una experiencia de usuario óptima y fluida.
