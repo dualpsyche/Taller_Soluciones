@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Reservas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/historialReservas.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/admin">
+                <i class="fas fa-utensils"></i> El Jardín de los Sabores
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Historial de Reservas</h1>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle shadow">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Personas</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="reservation-list">
+                    <!-- Las reservas se cargarán dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para editar reserva -->
+    <div class="modal fade" id="editarReservaModal" tabindex="-1" aria-labelledby="editarReservaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="editarReservaModalLabel">Editar Reserva</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editarReservaForm">
+                        <div class="mb-3">
+                            <label for="nombreReserva" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombreReserva" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="correoReserva" class="form-label">Correo</label>
+                            <input type="email" class="form-control" id="correoReserva" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefonoReserva" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="telefonoReserva" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="personasReserva" class="form-label">Personas</label>
+                            <input type="number" class="form-control" id="personasReserva" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaReserva" class="form-label">Fecha</label>
+                            <input type="date" class="form-control" id="fechaReserva" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="horaReserva" class="form-label">Hora</label>
+                            <input type="time" class="form-control" id="horaReserva" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="estadoReserva" class="form-label">Estado</label>
+                            <select id="estadoReserva" class="form-select">
+                                <option value="Confirmada">Confirmada</option>
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Cancelada">Cancelada</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/historialReservas/historialReservas.js"></script>
+</body>
+</html>
