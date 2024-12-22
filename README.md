@@ -1,4 +1,4 @@
-# Proyecto Frontend: El Jardín de los Sabores
+# Proyecto Taller: El Jardín de los Sabores
 
 ## Descripción
 Este proyecto fue desarrollado como parte de un sistema web para **El Jardín de los Sabores**, diseñado para ofrecer una experiencia interactiva y atractiva a los usuarios. Incluye funcionalidades para explorar el menú, gestionar pedidos y visualizar el estado de los mismos.
