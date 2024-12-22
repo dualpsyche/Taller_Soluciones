@@ -1,0 +1,93 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.sidebar {
+    height: 100vh;
+    background-color: #1e272e;
+    color: #fff;
+    padding: 1.5rem;
+    position: fixed;
+    width: 250px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar h2 i {
+    margin-right: 10px;
+}
+
+.sidebar a {
+    color: #d1d8e0;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.7rem 0;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    color: #ffa801;
+    background-color: rgba(255, 168, 1, 0.1);
+}
+
+.sidebar a i {
+    margin-right: 10px;
+}
+
+.content {
+    margin-left: 260px;
+    padding: 2rem;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-body h5 {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.card-body h5 i {
+    margin-right: 10px;
+    color: #ffa801;
+}
+
+.card-body p {
+    font-weight: 400;
+    color: #555;
+}
+
+.btn-primary {
+    background-color: #ffa801;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e69100;
+}

@@ -1,0 +1,596 @@
+/* Variables de colores */
+:root {
+    --primary-color: #f39c12; /* Amarillo Anaranjado */
+    --secondary-color: #a64b00; /* Marrón */
+    --dark-color: #2c3e50; /* Azul oscuro */
+    --light-color: #f8f9fa; /* Blanco humo */
+    --text-color: #333; /* Texto oscuro */
+}
+
+.pedido-confirmado {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #28a745;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    text-align: center;
+    animation: fadeInOut 3s forwards;
+    z-index: 1055; /* Mayor que el z-index de los modales de Bootstrap */
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+body {
+    background-image: url('img/fondoderestaurante.jpg'); /* Verifica el nombre del archivo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', sans-serif;
+    color: var(--text-color);
+    scroll-behavior: smooth;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hero-section {
+        height: 80vh;
+    }
+    .carousel-item img {
+        height: 500px;
+    }
+    .menu-section h2 {
+        font-size: 2rem;
+    }
+    .card-title {
+        font-size: 1.4rem;
+    }
+    .card-text {
+        font-size: 1rem;
+    }
+    footer {
+        padding: 15px 0;
+    }
+    footer a {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hero-section {
+        height: 100vh;
+    }
+    .carousel-item img {
+        height: 700px;
+    }
+    .menu-section h2 {
+        font-size: 3rem;
+    }
+    .card-title {
+        font-size: 1.75rem;
+    }
+    .card-text {
+        font-size: 1.3rem;
+    }
+    footer {
+        padding: 30px 0;
+    }
+    footer a {
+        font-size: 1.75rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .hero-section {
+        height: 90vh;
+    }
+    .carousel-item img {
+        height: 800px;
+    }
+    .menu-section h2 {
+        font-size: 3.5rem;
+    }
+    .card-title {
+        font-size: 2rem;
+    }
+    .card-text {
+        font-size: 1.5rem;
+    }
+    .navbar .navbar-brand {
+        font-size: 2rem;
+    }
+    footer {
+        padding: 40px 0;
+    }
+    footer a {
+        font-size: 2rem;
+    }
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Navbar */
+.navbar-scrolled {
+    background-color: var(--dark-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    background-color: var(--dark-color);
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar .navbar-brand {
+    font-family: 'Lobster', cursive;
+    font-size: 1.75rem;
+}
+
+.navbar .nav-link {
+    font-size: 1.1rem;
+    margin-right: 15px;
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+.navbar .form-control {
+    border-radius: 50px;
+}
+
+.navbar .btn-outline-light {
+    border-radius: 50px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .btn-outline-light:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Slider */
+.carousel-item img {
+    height: 600px;
+    object-fit: cover;
+    border-radius: 10px;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.carousel-caption h5 {
+    font-family: 'Lobster', cursive;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+/* Sección de Platos */
+.menu-section {
+    background-color: #fff;
+}
+
+.menu-section h2 {
+    font-family: 'Lobster', cursive;
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    margin-bottom: 40px;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.mb-3 {
+    padding-left: 5%;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Transición para suavizar el cambio de opacidad */
+}
+
+.card:hover .card-overlay {
+    opacity: 1; /* La superposición se vuelve visible al pasar el cursor */
+}
+
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-family: 'Oswald', sans-serif;
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1.2rem;
+    color: var(--dark-color);
+}
+
+.btn-warning {
+    background-color: var(--primary-color);
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-warning:hover {
+    background-color: #d35400;
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* Modal */
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-title {
+    font-family: 'Lobster', cursive;
+    font-size: 1.75rem;
+}
+
+.modal-body label {
+    font-weight: bold;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-color);
+    color: #fff;
+    padding: 20px 0;
+}
+
+footer a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--primary-color);
+}
+
+/* Responsive Ajustes */
+@media (max-width: 768px) {
+    .carousel-caption h5 {
+        font-size: 1.5rem;
+    }
+
+    .carousel-caption p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .menu-title {
+        font-size: 2rem;
+    }
+    .menu-subtitle {
+        font-size: 1rem;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+}
+
+/* Tipografía moderna y bordes redondeados */
+.modal-content {
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.modal-title {
+    color: #333;
+}
+
+.modal-body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-select, .form-control {
+    border-radius: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 8px rgba(108, 99, 255, 0.4);
+}
+
+/* Hover en botones */
+.btn-primary {
+    background-color: #6c63ff;
+    border-color: #6c63ff;
+    box-shadow: 0 4px 10px rgba(108, 99, 255, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: #554dff;
+    border-color: #554dff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(108, 99, 255, 0.6);
+}
+
+/* Animación suave para la entrada del modal */
+.modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.modal.fade.show .modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modal.fade .modal-dialog {
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+/* Sombra en el modal */
+.modal-content {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo de los inputs y checkboxes */
+.form-check-input:checked {
+    background-color: #6c63ff;
+    border-color: #6c63ff;
+}
+
+.form-check-label {
+    margin-left: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Carrito flotante con diseño moderno */
+#cart-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cart-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#cart-icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.cart-icon-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.cart-checkout-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #f8c94b;
+    margin-top: 10px;
+}
+
+#cart-icon:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+#cart-count {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Modal del carrito */
+#cart-modal {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 350px;
+    background-color: #fff;
+    border-radius: 15px 15px 0 0;
+    padding: 20px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.cart-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+}
+
+/* Total del carrito */
+#cart-total {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #222;
+}
+
+#checkout-btn {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #f8c94b;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#checkout-btn:hover {
+    background-color: #f1b930;
+}
+
+/* Estilo para los items del carrito */
+.cart-items-list {
+    list-style-type: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cart-item-removed {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+/* Animaciones para agregar y eliminar */
+.cart-item-added {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.cart-item-removed {
+    animation: fadeOut 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+}
+
+/* Ajustes adicionales para hacer el modal responsive */
+@media screen and (max-width: 768px) {
+    #cart-modal {
+        width: 90%;
+    }
+}

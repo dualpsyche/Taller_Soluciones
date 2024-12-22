@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario - El Jardín de los Sabores</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="productos" class="container mt-5">
+        <h2>Gestión de Productos</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Activo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="productos-list">
+                    <!-- Los productos se cargarán dinámicamente aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/inventario/inventario.js"></script>
+</body>
+</html>

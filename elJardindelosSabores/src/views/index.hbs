@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Jardín de los Sabores</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">El Jardín de los Sabores</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" 
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                    <button class="btn btn-outline-warning nav-link" data-bs-toggle="modal" data-bs-target="#pedidoEstadoModal">
+                        <i class="fas fa-receipt"></i> Estado del Pedido
+                    </button>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <!-- Modal para el estado del pedido -->
+        <div id="pedidoEstadoModal" class="modal fade" tabindex="-1" aria-labelledby="pedidoEstadoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pedidoEstadoModalLabel">Estado de tu Pedido</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Productos en el pedido:</h6>
+                        <ul id="pedidoProductos" class="list-group mb-3"></ul>
+                        <h6>Total: <span id="pedidoTotal">$0.00</span></h6>
+                        <h6>Estado: <span id="pedidoEstado">Sin Pedido</span></h6>
+                        <h6>Tiempo Estimado: <span id="pedidoTiempo">No disponible</span></h6>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" onclick="generarBoletaPDF()">Descargar Boleta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Sección de bienvenida con descripción -->
+    <header class="hero-section d-flex align-items-center" style="background-image: url('img/fondo.jpg'); height: 100vh; background-size: cover;">
+        <div class="container text-center text-white">
+            <h1 class="display-4 fw-bold">Bienvenido a El Jardín de los Sabores</h1>
+            <p class="lead mb-4">Disfruta de una experiencia culinaria única, donde cada plato está lleno de sabor y preparado con los ingredientes más frescos. ¡Nos aseguramos de que tu visita sea inolvidable!</p>
+            <a href="#" class="btn btn-warning btn-lg"><i class="fas fa-utensils"></i> Descubre Nuestros Platos</a>
+        </div>
+    </header>
+
+    <!-- Slider con imágenes de platos y personal del restaurante -->
+    <section id="carouselSection" class="my-5">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" 
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" 
+                        aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" 
+                        aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/ensaladacesar.jpg" class="d-block w-100" alt="Plato 1" loading="lazy">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-3 rounded">
+                        <h5>Plato Especial: Ensalada Cesar</h5>
+                        <p>Prueba nuestra Ensalada César: lechuga fresca, picatostes crujientes, queso parmesano y un aderezo cremoso, acompañada de un jugoso filete de res. ¡Una combinación irresistible!</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/ensaladafresca.png" class="d-block w-100" alt="Plato 2" loading="lazy">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-3 rounded">
+                        <h5>Ensalada Fresca de la Casa</h5>
+                        <p>Una mezcla perfecta de lechugas, frutas frescas y aderezo de la casa. Saludable y delicioso.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/chefs.jpg" class="d-block w-100" alt="Restaurante" loading="lazy">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-3 rounded">
+                        <h5>Nuestro Equipo</h5>
+                        <p>Con un equipo comprometido y apasionado, estamos listos para ofrecerte la mejor experiencia culinaria.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" 
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" 
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </section>
+
+
+
+    <!-- Sección de Platos más pedidos -->
+    <section id="platos-mas-pedidos" class="menu-section py-5 bg-light">
+    <div class="container">
+        <h2 class="display-4 fw-bold animate__animated animate__fadeInDown text-center">Nuestros Platos Más Pedidos</h2>
+        <div class="row">
+            <!-- Hamburguesa -->
+            <div class="col-md-4 mb-4 filterable-item data-description="Hamburguesa"">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/hamburgesa.jpg" class="card-img-top" alt="Hamburguesa Especial con ingredientes frescos" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title  ">Hamburguesa</h5>
+                        <p class="card-text">$4,500</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Ingredientes: Carne de res, lechuga, tomate, queso cheddar y salsa especial.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="1" 
+                                data-name="Hamburguesa" 
+                                data-price="4500">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="pedidoConfirmadoModal" tabindex="-1" aria-labelledby="pedidoConfirmadoLabel" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pedidoConfirmadoLabel">Pedido Confirmado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¡Su pedido está siendo preparado!
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Paella -->
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/paella.jpg" class="card-img-top" alt="Paella Valenciana" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Paella</h5>
+                        <p class="card-text">$6,000</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3" >Ingredientes: Arroz, mariscos frescos, pollo y especias tradicionales.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="2" 
+                                data-name="Paella" 
+                                data-price="6000">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+    <!-- Sección de Platos De Entrada -->
+
+    <section id="entradas" class="menu-section py-5 bg-light">
+    <div class="container">
+        <h2 class="display-4 fw-bold animate__animated animate__fadeInDown text-center">Entradas</h2>
+        <div class="row">
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/bruschetta.jpg" class="card-img-top" alt="Bruschetta de tomate y albahaca" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Bruschetta de tomate y albahaca</h5>
+                        <p class="card-text">$3,000</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Ingredientes: Pan tostado con tomate fresco, albahaca y un toque de aceite de oliva.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="3" 
+                                data-name="Bruschetta de tomate y albahaca" 
+                                data-price="3000">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/ensaladacaprese.jpg" class="card-img-top" alt="Ensalada Caprese" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Ensalada Caprese</h5>
+                        <p class="card-text">$3,500</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Ingredientes: Tomate, mozzarella fresca, albahaca y un toque de aceite de oliva y vinagre balsámico.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="4" 
+                                data-name="Ensalada Caprese" 
+                                data-price="3500">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/sopacalavaza.jpg" class="card-img-top" alt="Sopa de calabaza" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Sopa de calabaza</h5>
+                        <p class="card-text">$3,000</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Ingredientes: Cremosa sopa de calabaza asada con un toque de crema y especias</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="5" 
+                                data-name="Sopa de calabaza" 
+                                data-price="3000">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+    <!-- Sección de Platos Principales-->
+
+    <section id="platos-principales" class="menu-section py-5 bg-light">
+     <div class="container">
+      <h2 class="display-4 fw-bold animate__animated animate__fadeInDown text-center">Platos Principales</h2>
+       <div class="row">
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/filete.png" class="card-img-top" alt="Filete de res con puré de papas" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Filete de res con puré de papas</h5>
+                        <p class="card-text">$5,500</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Ingredientes: Un filete de res a la parrilla acompañado de un suave puré de papas y salsa de champiñones.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="6" 
+                                data-name="Filete de res con puré de papas" 
+                                data-price="5500">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/arrozsalteado.jpg" class="card-img-top" alt="Arroz con verduras" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Arroz con verduras</h5>
+                        <p class="card-text">$5,000</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Ingredientes: Arroz blanco con una mezcla de vegetales salteados como zanahorias, guisantes y pimientos.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="7" 
+                                data-name="Arroz con verduras" 
+                                data-price="5000">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/hamburgesa.jpg" class="card-img-top" alt="Hamburguesa Especial con ingredientes frescos" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Hamburguesa</h5>
+                        <p class="card-text">$4,500</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Ingredientes: Carne de res, lechuga, tomate, queso cheddar y salsa especial.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="1" 
+                                data-name="Hamburguesa" 
+                                data-price="4500">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/paella.jpg" class="card-img-top" alt="Paella Valenciana" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Paella</h5>
+                        <p class="card-text">$6,000</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3" >Ingredientes: Arroz, mariscos frescos, pollo y especias tradicionales.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="2" 
+                                data-name="Paella" 
+                                data-price="6000">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </section>
+
+
+
+
+    <!-- Sección de Postres -->
+
+    <section id="postres" class="menu-section py-5 bg-light">
+     <div class="container">
+      <h2 class="display-4 fw-bold animate__animated animate__fadeInDown text-center">Postres</h2>
+       <div class="row">
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/tarta_manzana_8.jpg" class="card-img-top" alt="Tarta de manzana" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Tarta de manzana</h5>
+                        <p class="card-text">$4,500</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Ingredientes: Masa crujiente con manzanas caramelizadas y un toque de canela.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="8" 
+                                data-name="Tarta de manzana" 
+                                data-price="4500">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/brownie.jpg" class="card-img-top" alt="Brownie de chocolate" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Brownie de chocolate</h5>
+                        <p class="card-text">$3,500</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Ingredientes: Brownie denso y húmedo, servido con helado de vainilla y salsa de chocolate.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="9" 
+                                data-name="Brownie de chocolate" 
+                                data-price="3500">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/pannacotta_vainilla.jpg" class="card-img-top" alt="Panna cotta de vainilla" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Panna cotta de vainilla</h5>
+                        <p class="card-text">$4,000</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Ingredientes: Crema cocida de vainilla con una salsa de frutos rojos frescos.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="10" 
+                                data-name="Panna cotta de vainilla" 
+                                data-price="4000">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+    </section>
+
+
+    <!-- Sección de Insumos -->
+
+    <section id="insumos" class="menu-section py-5 bg-light">
+     <div class="container">
+      <h2 class="display-4 fw-bold animate__animated animate__fadeInDown text-center">Insumos</h2>
+       <div class="row">
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/torobayo.jpg" class="card-img-top" alt="Cerveza Kunstmann Torobayo 500cc" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Cerveza Kunstmann Torobayo 500cc</h5>
+                        <p class="card-text">$3,000</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Cerveza artesanal de sabor balanceado, con toques de malta tostada y un ligero amargor, perfecta para acompañar platos contundentes.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="11" 
+                                data-name="Cerveza Kunstmann Torobayo 500cc" 
+                                data-price="3000">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/australcalafate.jpg" class="card-img-top" alt="Cerveza Austral Calafate 500cc" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Cerveza Austral Calafate 500cc</h5>
+                        <p class="card-text">$3,000</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Cerveza artesanal de sabor suave y afrutado, con un toque único de calafate que le da un perfil refrescante y ligeramente dulce, ideal para disfrutar en cualquier ocasión.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="12" 
+                                data-name="Cerveza Austral Calafate 500cc" 
+                                data-price="3000">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/negroni.png" class="card-img-top" alt="Negroni" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Negroni</h5>
+                        <p class="card-text">$6,900</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Ginebra, vermut rojo y Campari. Un cóctel amargo y sabroso que complementa perfectamente platos intensos.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="13" 
+                                data-name="Negroni" 
+                                data-price="6900">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 filterable-item">
+                <div class="card h-100 shadow-sm">
+                    <img src="img/vinotinto.avif" class="card-img-top" alt="Vino Miguel Torres Santa Digna Gran Reserva" loading="lazy">
+                    <div class="card-body text-center">
+                        <h5 class="card-title ">Vino Miguel Torres Santa Digna Gran Reserva</h5>
+                        <p class="card-text">$20.000</p>
+                    </div>
+                    <div class="card-overlay">
+                        <p class="mb-3">Vino tinto de cuerpo robusto, con aromas a frutos negros y notas especiadas, ideal para acompañar carnes rojas y quesos curados.</p>
+                        <button class="btn btn-warning add-to-cart-btn fas fa-plus-circle" 
+                                data-id="14" 
+                                data-name="Vino Miguel Torres Santa Digna Gran Reserva" 
+                                data-price="20000">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p>&copy; 2024 El Jardín de los Sabores. Todos los derechos reservados.</p>
+            <div>
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Icono flotante del carrito -->
+    <div id="cart-icon">
+        <div class="cart-icon-container">
+            <button id="cartBtn">
+                <img src="img/carrito.jpg" alt="Carrito de compras" class="cart-icon-img">
+                <span class="cart-icon-text">Carrito (<span id="cart-count">0</span>)</span>
+            </button>
+            <span class="cart-checkout-text">PAGAR</span>
+        </div>
+    </div>
+
+    <!-- Modal del carrito -->
+<div id="cart-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Encabezado del Modal -->
+            <div class="modal-header text-white">
+                <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Cuerpo del Modal -->
+            <div class="modal-body">
+                <!-- Lista de productos en el carrito -->
+                
+                <ul id="modal-cart-items" class="list-group mb-3"></ul>
+ <!-- Selección de bebidas -->
+                <div class="dropdown mb-3">
+                    <label for="drink-select" class="form-label">Bebidas:</label>
+                    <select id="drink-select" class="form-select">
+                        <option selected>Seleccionar bebida...</option>
+                        <option value="agua"  data-price="1500" >Agua Mineral $1500</option>
+                        <option value="gaseosa" data-price="1500">Express Coca cola $1500</option>
+                        <option value="jugo" data-price="3000">Jugo natural $3000</option>
+                        <option value="cerveza" data-price="1500">Cerveza Vastago 330cc $1500</option>
+                        <option value="vino"  data-price="4900">Vino Tinto Casillero del Diablo $4900</option>
+                    </select>
+                </div>
+                
+
+                <!-- Selección de postres -->
+                <div class="dropdown mb-3">
+                    <label for="dessert-select" class="form-label">Postres:</label>
+                    <select id="dessert-select" class="form-select">
+                        <option selected>Seleccionar postre...</option>
+                        <option value="helado"  data-price="3000">Helado de chocolate $2990</option>
+                        <option value="torta" data-price="3000">Torta de chocolate $2990</option>
+                        <option value="frutas"  data-price="3000">Ensalada de frutas $2990</option>
+                        <option value="flan"  data-price="1500">Flan casero $1500</option>
+                    </select>
+                </div>
+
+                <!-- Campo para comentarios -->
+                <div class="mb-3">
+                    <label for="order-comments" class="form-label">Comentarios (opcional):</label>
+                    <textarea id="order-comments" class="form-control" rows="3" placeholder="Añade algún comentario sobre tu pedido"></textarea>
+                </div>
+
+                <!-- Precio total -->
+                <div id="modal-total-price" class="d-flex justify-content-between align-items-center border-top pt-3">
+                    <h5 class="mb-0">Total:</h5>
+                    <h5 class="text-primary mb-0">$<span id="total-price">0.00</span></h5>
+                </div>
+            </div>
+
+            <!-- Pie del Modal -->
+            <div class="modal-footer">
+                <button id="checkout-btn" class="btn btn-success">Finalizar Compra</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Modal de Selección de Método de Pago -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Método de Pago</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <button id="payCash" class="btn btn-success" aria-label="Pagar en efectivo">Efectivo</button>
+                    <button id="payCard" class="btn btn-info">Tarjeta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalles de la Tarjeta -->
+    <div class="modal fade" id="cardDetailsModal" tabindex="-1" aria-labelledby="cardDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cardDetailsModalLabel">Ingrese Detalles de la Tarjeta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/pedido" method="POST" id="cardForm">
+                    <div class="mb-3">
+                        <label for="cardNumber" class="form-label">Número de Tarjeta</label>
+                        <input type="text" class="form-control" id="cardNumber" name="cardNumber" required maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cardHolder" class="form-label">Nombre en la Tarjeta</label>
+                        <input type="text" class="form-control" id="cardHolder" name="cardHolder" required placeholder="Nombre del titular">
+                    </div>
+                    <div class="mb-3">
+                        <label for="expiryDate" class="form-label">Fecha de Expiración</label>
+                        <input type="text" class="form-control" id="expiryDate" name="expiryDate" required placeholder="MM/AA">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cvv" class="form-label">CVV</label>
+                        <input type="password" class="form-control" id="cardCVV" name="cvv" required maxlength="3" placeholder="XXX">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Pagar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/main.js"></script>
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
